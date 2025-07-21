@@ -10,16 +10,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
-
-
-
-
-
-
-
 app = Flask(__name__)
-
-
 
 @app.route("/")
 def index():
@@ -47,4 +38,7 @@ def chat():
         return jsonify({"reply": "Oops bestie, I dropped the tea cup ☕😩 Try again later!"})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
+
